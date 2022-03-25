@@ -30,6 +30,11 @@ class Post
     private $content;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $Filename;
+
+    /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", orphanRemoval=true)
      */
     private $comments;
@@ -101,5 +106,18 @@ class Post
     public function __toString(): string
     {
         return $this->getTitle();
+    }
+
+
+    public function getFilename()
+    {
+        return $this->Filename;
+    }
+
+    public function setFilename($Filename)
+    {
+        $this->Filename = $Filename;
+
+        return $this;
     }
 }
