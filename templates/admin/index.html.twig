@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Roles</th>
+                <th>Is_varified</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for users in user %}
+            <tr>
+                <td>{{ users.id }}</td>
+                <td>{{ users.email }}</td>
+                <td>{{ users.roles|join(',') }}</td>
+                <td>{{ users.password }}</td>
+                <td>{{ users.isVerified }}</td>
+                <td>
+                    <a href="{{ path('app_admin_show', {'id': users.id}) }}">show</a>
+                    <a href="{{ path('app_user_edit', {'id': users.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
